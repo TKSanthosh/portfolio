@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Building2, CheckCircle2, Layers } from 'lucide-react';
+import { ExternalLink, Github, Building2, CheckCircle2, Layers, MapPin, Calendar, TrendingUp } from 'lucide-react';
 import { projectsData } from '../constants/data';
 
 const ProjectsSection = () => {
@@ -16,8 +16,8 @@ const ProjectsSection = () => {
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured Enterprise Projects</h2>
                     <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Production applications, event platforms, and exam delivery engines built with Node.js, React.js, MySQL, and MongoDB.
+                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+                        Mission-critical event management systems, high-concurrency exam delivery engines, and item configuration platforms engineered for IQVIA and Sify Technologies.
                     </p>
                 </motion.div>
 
@@ -29,38 +29,38 @@ const ProjectsSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.15 }}
-                            className="bg-gray-50 dark:bg-gray-800/80 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700/80 flex flex-col justify-between"
+                            className="bg-gray-50 dark:bg-gray-800/80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700/80 flex flex-col justify-between"
                         >
                             <div className="p-6 sm:p-7 flex-grow flex flex-col">
                                 
-                                {/* Company Tag & Links Header */}
-                                <div className="flex justify-between items-center mb-3">
+                                {/* Header: Company & Metrics */}
+                                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                                     <span className="inline-flex items-center text-xs font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded-full border border-blue-200/50 dark:border-blue-800/50">
                                         <Building2 size={12} className="mr-1.5" />
                                         {project.company}
                                     </span>
 
-                                    <div className="flex space-x-2">
+                                    <div className="flex items-center space-x-2">
                                         {project.links.github && (
                                             <a 
                                                 href={project.links.github} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer" 
-                                                className="p-1.5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors bg-white dark:bg-gray-700 rounded-lg shadow-sm"
+                                                className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors bg-white dark:bg-gray-700 rounded-xl shadow-xs"
                                                 title="View GitHub Repository"
                                             >
-                                                <Github size={18} />
+                                                <Github size={16} />
                                             </a>
                                         )}
-                                        {project.links.demo && project.links.demo !== '#' && (
+                                        {project.links.demo && (
                                             <a 
                                                 href={project.links.demo} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer" 
-                                                className="p-1.5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors bg-white dark:bg-gray-700 rounded-lg shadow-sm"
-                                                title="View Portfolio / Live Platform"
+                                                className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors bg-white dark:bg-gray-700 rounded-xl shadow-xs"
+                                                title="View Platform Link"
                                             >
-                                                <ExternalLink size={18} />
+                                                <ExternalLink size={16} />
                                             </a>
                                         )}
                                     </div>
@@ -70,13 +70,32 @@ const ProjectsSection = () => {
                                     {project.title}
                                 </h3>
 
-                                <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+                                <div className="flex items-center space-x-3 text-xs text-gray-500 dark:text-gray-400 mb-4">
+                                    <span className="flex items-center"><MapPin size={12} className="mr-1 text-red-500" />{project.location}</span>
+                                    <span>•</span>
+                                    <span className="flex items-center"><Calendar size={12} className="mr-1 text-blue-500" />{project.period}</span>
+                                </div>
+
+                                <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-5">
                                     {project.description}
                                 </p>
 
-                                <div className="mb-6 flex-grow">
+                                {/* Impact Metrics Pills */}
+                                {project.metrics && (
+                                    <div className="flex flex-wrap gap-1.5 mb-5">
+                                        {project.metrics.map((metric, i) => (
+                                            <span key={i} className="inline-flex items-center px-2.5 py-1 bg-green-50 dark:bg-green-950/40 text-green-700 dark:text-green-300 text-xs font-bold rounded-lg border border-green-200/60 dark:border-green-800/40">
+                                                <TrendingUp size={12} className="mr-1 text-green-600" />
+                                                {metric}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Key Highlights */}
+                                <div className="mb-6 flex-grow space-y-2">
                                     <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-                                        <Layers size={14} className="mr-1.5 text-blue-600" /> Key Contributions:
+                                        <Layers size={14} className="mr-1.5 text-blue-600" /> Architectural Achievements:
                                     </h4>
                                     <ul className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                                         {project.highlights.map((highlight, idx) => (
@@ -88,7 +107,7 @@ const ProjectsSection = () => {
                                     </ul>
                                 </div>
 
-                                {/* Technology Tags Footer */}
+                                {/* Tech Tags */}
                                 <div className="flex flex-wrap gap-1.5 pt-4 border-t border-gray-200/80 dark:border-gray-700/80 mt-auto">
                                     {project.tech.map((tag) => (
                                         <span key={tag} className="px-2.5 py-1 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 text-xs rounded-md font-semibold border border-gray-200 dark:border-gray-800 shadow-2xs">

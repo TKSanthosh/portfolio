@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, Layers, CheckCircle2 } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, Layers, CheckCircle2, Sparkles } from 'lucide-react';
 import { experienceData } from '../constants/data';
 
 const ExperienceSection = () => {
@@ -16,8 +16,8 @@ const ExperienceSection = () => {
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
                     <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-                        Track record of building enterprise web applications, high-concurrency engines, and microservices.
+                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+                        Proven track record at IQVIA and Sify Technologies building enterprise web platforms, high-concurrency exam engines, and robust Node.js microservices.
                     </p>
                 </motion.div>
 
@@ -37,13 +37,13 @@ const ExperienceSection = () => {
                             }`}
                         >
                             {/* Timeline Dot Icon */}
-                            <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-9 h-9 bg-blue-600 text-white rounded-full border-4 border-white dark:border-gray-950 z-10 flex items-center justify-center shadow-md">
-                                <Briefcase size={15} />
+                            <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-blue-600 text-white rounded-full border-4 border-white dark:border-gray-950 z-10 flex items-center justify-center shadow-md">
+                                <Briefcase size={16} />
                             </div>
 
                             {/* Content Card */}
                             <div className={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pl-10' : 'md:pr-10'}`}>
-                                <div className="bg-white dark:bg-gray-900 p-6 sm:p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 space-y-4">
+                                <div className="bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 space-y-4">
                                     
                                     {/* Header: Role & Company Badge */}
                                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 dark:border-gray-800 pb-3">
@@ -53,7 +53,7 @@ const ExperienceSection = () => {
                                                 {exp.company}
                                             </span>
                                         </div>
-                                        <span className="text-xs font-semibold px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full border border-blue-100 dark:border-blue-800">
+                                        <span className="text-xs font-bold px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full border border-blue-100 dark:border-blue-800">
                                             {exp.period}
                                         </span>
                                     </div>
@@ -65,29 +65,29 @@ const ExperienceSection = () => {
                                             {exp.location}
                                         </div>
                                         {exp.project && (
-                                            <div className="flex items-center text-blue-600 dark:text-blue-400">
+                                            <div className="flex items-center text-blue-600 dark:text-blue-400 font-semibold">
                                                 <Layers size={13} className="mr-1" />
                                                 {exp.project}
                                             </div>
                                         )}
                                     </div>
 
-                                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 italic">
+                                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 italic bg-gray-50 dark:bg-gray-800/50 p-3 rounded-xl">
                                         "{exp.description}"
                                     </p>
 
                                     {/* Responsibilities Bullet List */}
-                                    <ul className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                                    <ul className="space-y-2.5 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                                         {exp.responsibilities.map((resp, idx) => (
                                             <li key={idx} className="flex items-start">
-                                                <CheckCircle2 size={15} className="text-blue-500 dark:text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
-                                                <span>{resp}</span>
+                                                <CheckCircle2 size={15} className="text-blue-500 dark:text-blue-400 mr-2.5 flex-shrink-0 mt-0.5" />
+                                                <span className="leading-relaxed">{resp}</span>
                                             </li>
                                         ))}
                                     </ul>
 
                                     {/* Tech Tags */}
-                                    <div className="flex flex-wrap gap-1.5 pt-2">
+                                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-gray-100 dark:border-gray-800">
                                         {exp.technologies.map((tech) => (
                                             <span key={tech} className="text-xs font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-md">
                                                 {tech}
