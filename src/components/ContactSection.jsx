@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, CheckCircle } from 'lucide-react';
 import { profileData } from '../constants/data';
 
 const ContactSection = () => {
@@ -9,6 +9,7 @@ const ContactSection = () => {
         email: '',
         message: ''
     });
+    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,10 +17,12 @@ const ContactSection = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
         console.log('Form submitted:', formData);
-        alert('Thank you for your message! I will get back to you soon.');
-        setFormData({ name: '', email: '', message: '' });
+        setSubmitted(true);
+        setTimeout(() => {
+            setSubmitted(false);
+            setFormData({ name: '', email: '', message: '' });
+        }, 4000);
     };
 
     return (
@@ -30,149 +33,191 @@ const ContactSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-12"
+                    className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
                     <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400">Have a project in mind or just want to say hi?</p>
+                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+                        Looking to connect, discuss enterprise software projects, or explore opportunities? Reach out anytime!
+                    </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    {/* Contact Info */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    {/* Contact Info (5 Cols) */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
+                        className="lg:col-span-5 space-y-6"
                     >
-                        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Contact Information</h3>
-                        <div className="space-y-6">
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                                        <Mail size={24} />
-                                    </div>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                            Contact Details
+                        </h3>
+
+                        <div className="space-y-4">
+                            
+                            {/* Email */}
+                            <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 mr-4">
+                                    <Mail size={22} />
                                 </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium text-gray-900 dark:text-white">Email</h4>
-                                    <p className="mt-1 text-gray-600 dark:text-gray-400">
-                                        <a href={profileData.social.email} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                            {profileData.social.email.replace('mailto:', '')}
-                                        </a>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Email</h4>
+                                    <a 
+                                        href={profileData.social.email} 
+                                        className="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                    >
+                                        {profileData.social.email.replace('mailto:', '')}
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Phone */}
+                            <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 mr-4">
+                                    <Phone size={22} />
+                                </div>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Phone</h4>
+                                    <a 
+                                        href={`tel:${profileData.social.mobile}`} 
+                                        className="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                    >
+                                        {profileData.social.mobile}
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Location */}
+                            <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 mr-4">
+                                    <MapPin size={22} />
+                                </div>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Location</h4>
+                                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                                        {profileData.location}, India
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                                        <MapPin size={24} />
-                                    </div>
+                            {/* LinkedIn */}
+                            <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 mr-4">
+                                    <Linkedin size={22} />
                                 </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium text-gray-900 dark:text-white">Location</h4>
-                                    <p className="mt-1 text-gray-600 dark:text-gray-400">
-                                        {profileData.location}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                                        <Github size={24} />
-                                    </div>
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium text-gray-900 dark:text-white">GitHub</h4>
-                                    <p className="mt-1 text-gray-600 dark:text-gray-400">
-                                        <a href={profileData.social.github} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                            github.com/TKSanthosh
-                                        </a>
-                                    </p>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">LinkedIn</h4>
+                                    <a 
+                                        href={profileData.social.linkedin} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                    >
+                                        linkedin.com/in/santhosh-tk
+                                    </a>
                                 </div>
                             </div>
 
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                                        <Linkedin size={24} />
-                                    </div>
+                            {/* GitHub */}
+                            <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 mr-4">
+                                    <Github size={22} />
                                 </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium text-gray-900 dark:text-white">LinkedIn</h4>
-                                    <p className="mt-1 text-gray-600 dark:text-gray-400">
-                                        <a href={profileData.social.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                            linkedin.com/in/santhosh-tk
-                                        </a>
-                                    </p>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">GitHub</h4>
+                                    <a 
+                                        href={profileData.social.github} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                    >
+                                        github.com/TKSanthosh
+                                    </a>
                                 </div>
                             </div>
+
                         </div>
                     </motion.div>
 
-                    {/* Contact Form */}
+                    {/* Contact Form (7 Cols) */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg"
+                        className="lg:col-span-7 bg-gray-50 dark:bg-gray-800/80 p-8 sm:p-10 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700/80"
                     >
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    required
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    className="mt-1 block w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:text-white"
-                                    placeholder="Your Name"
-                                />
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Me a Message</h3>
+
+                        {submitted ? (
+                            <div className="p-6 bg-blue-50 dark:bg-blue-950/60 rounded-2xl border border-blue-200 dark:border-blue-800 text-center space-y-3">
+                                <CheckCircle className="mx-auto text-blue-600 dark:text-blue-400" size={40} />
+                                <h4 className="text-lg font-bold text-gray-900 dark:text-white">Message Sent Successfully!</h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-300">
+                                    Thank you for reaching out. I'll get back to you as soon as possible.
+                                </p>
                             </div>
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    required
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className="mt-1 block w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:text-white"
-                                    placeholder="your.email@example.com"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Message
-                                </label>
-                                <textarea
-                                    name="message"
-                                    id="message"
-                                    rows="4"
-                                    required
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    className="mt-1 block w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:text-white"
-                                    placeholder="How can I help you?"
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-                            >
-                                Send Message <Send size={18} className="ml-2" />
-                            </button>
-                        </form>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-5">
+                                <div>
+                                    <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-2">
+                                        Your Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        required
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm"
+                                        placeholder="Santhosh"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-2">
+                                        Email Address
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm"
+                                        placeholder="santhosh@example.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-2">
+                                        Message
+                                    </label>
+                                    <textarea
+                                        name="message"
+                                        id="message"
+                                        rows="4"
+                                        required
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm"
+                                        placeholder="Hi Santhosh, I'd like to talk about..."
+                                    ></textarea>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full py-3.5 px-6 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/25 transition-all duration-200 flex items-center justify-center space-x-2"
+                                >
+                                    <span>Send Message</span>
+                                    <Send size={18} />
+                                </button>
+                            </form>
+                        )}
                     </motion.div>
+
                 </div>
             </div>
         </section>
