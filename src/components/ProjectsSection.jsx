@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Building2, CheckCircle2, Layers, MapPin, Calendar, TrendingUp } from 'lucide-react';
+import { Building2, CheckCircle2, Layers, MapPin, Calendar, TrendingUp, ShieldCheck } from 'lucide-react';
 import { projectsData } from '../constants/data';
 
 const ProjectsSection = () => {
@@ -14,10 +14,10 @@ const ProjectsSection = () => {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured Enterprise Projects</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Enterprise Applications</h2>
                     <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
                     <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
-                        Mission-critical event management systems, high-concurrency exam delivery engines, and item configuration platforms engineered for IQVIA and Sify Technologies.
+                        Mission-critical event management platforms, high-concurrency exam delivery engines, and item configuration systems engineered for IQVIA and Sify Technologies.
                     </p>
                 </motion.div>
 
@@ -29,44 +29,24 @@ const ProjectsSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.15 }}
-                            className="bg-gray-50 dark:bg-gray-800/80 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700/80 flex flex-col justify-between"
+                            className="bg-gray-50 dark:bg-gray-800/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200/80 dark:border-gray-700/80 flex flex-col justify-between"
                         >
                             <div className="p-6 sm:p-7 flex-grow flex flex-col">
                                 
-                                {/* Header: Company & Metrics */}
-                                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                                {/* Header: Company & Enterprise Tag */}
+                                <div className="flex items-center justify-between gap-2 mb-4">
                                     <span className="inline-flex items-center text-xs font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded-full border border-blue-200/50 dark:border-blue-800/50">
                                         <Building2 size={12} className="mr-1.5" />
                                         {project.company}
                                     </span>
 
-                                    <div className="flex items-center space-x-2">
-                                        {project.links.github && (
-                                            <a 
-                                                href={project.links.github} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
-                                                className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors bg-white dark:bg-gray-700 rounded-xl shadow-xs"
-                                                title="View GitHub Repository"
-                                            >
-                                                <Github size={16} />
-                                            </a>
-                                        )}
-                                        {project.links.demo && (
-                                            <a 
-                                                href={project.links.demo} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
-                                                className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors bg-white dark:bg-gray-700 rounded-xl shadow-xs"
-                                                title="View Platform Link"
-                                            >
-                                                <ExternalLink size={16} />
-                                            </a>
-                                        )}
-                                    </div>
+                                    <span className="inline-flex items-center text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-200/60 dark:bg-gray-700/60 px-2.5 py-1 rounded-lg">
+                                        <ShieldCheck size={13} className="mr-1 text-gray-600 dark:text-gray-300" />
+                                        Enterprise System
+                                    </span>
                                 </div>
 
-                                <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-2 leading-snug">
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-snug">
                                     {project.title}
                                 </h3>
 
@@ -95,7 +75,7 @@ const ProjectsSection = () => {
                                 {/* Key Highlights */}
                                 <div className="mb-6 flex-grow space-y-2">
                                     <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-                                        <Layers size={14} className="mr-1.5 text-blue-600" /> Architectural Achievements:
+                                        <Layers size={14} className="mr-1.5 text-blue-600" /> Key Architectural Contributions:
                                     </h4>
                                     <ul className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                                         {project.highlights.map((highlight, idx) => (

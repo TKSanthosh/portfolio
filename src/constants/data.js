@@ -88,8 +88,8 @@ export const projectsData = [
     tech: ["Node.js", "React.js", "MySQL", "Express.js", "RESTful APIs", "AWS"],
     metrics: ["Enterprise Scale", "Clinical Event Mgmt", "Active Development"],
     links: {
-      github: "https://github.com/TKSanthosh",
-      demo: "https://santhoshtk-portfolio.netlify.app/"
+      github: null,
+      demo: null
     }
   },
   {
@@ -109,7 +109,7 @@ export const projectsData = [
     tech: ["Node.js", "Express.js", "MongoDB", "MySQL", "JWT", "RBAC", "Async/Await"],
     metrics: ["30% Bugs Cut", "PHP -> Node Migration", "JWT & RBAC"],
     links: {
-      github: "https://github.com/TKSanthosh",
+      github: null,
       demo: null
     }
   },
@@ -130,7 +130,7 @@ export const projectsData = [
     tech: ["Node.js", "Express.js", "React.js", "MySQL", "MongoDB", "REST APIs"],
     metrics: ["20% Latency Cut", "Modular Services", "API Security"],
     links: {
-      github: "https://github.com/TKSanthosh",
+      github: null,
       demo: null
     }
   }
