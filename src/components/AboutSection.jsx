@@ -4,6 +4,8 @@ import { Award, Briefcase, Code, GraduationCap, CheckCircle2, Zap, Target, Users
 import { profileData } from '../constants/data';
 
 const AboutSection = () => {
+    const certifications = profileData.certifications || [];
+
     return (
         <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,7 +56,7 @@ const AboutSection = () => {
                             </div>
                             <div className="text-center p-4 bg-gray-50 dark:bg-gray-800/80 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
                                 <Award className="mx-auto text-blue-600 mb-2" size={24} />
-                                <h4 className="font-extrabold text-gray-900 dark:text-white text-lg">{profileData.certifications.length}+</h4>
+                                <h4 className="font-extrabold text-gray-900 dark:text-white text-lg">{certifications.length}+</h4>
                                 <p className="text-xs text-gray-500 font-medium">Certifications</p>
                             </div>
                         </div>
@@ -66,32 +68,34 @@ const AboutSection = () => {
                                     <GraduationCap className="mr-2.5 text-blue-600" size={22} /> Education
                                 </h4>
                                 <div className="bg-gray-50 dark:bg-gray-800/80 p-5 rounded-xl border border-gray-100 dark:border-gray-800">
-                                    <h5 className="font-bold text-gray-900 dark:text-white text-base">{profileData.education.degree}</h5>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{profileData.education.college}</p>
+                                    <h5 className="font-bold text-gray-900 dark:text-white text-base">{profileData.education?.degree}</h5>
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{profileData.education?.college}</p>
                                     <div className="flex items-center space-x-4 mt-3 text-xs font-semibold text-blue-600 dark:text-blue-400">
-                                        <span>Graduation Year: {profileData.education.year}</span>
+                                        <span>Graduation Year: {profileData.education?.year}</span>
                                         <span>•</span>
-                                        <span>CGPA: {profileData.education.cgpa}</span>
+                                        <span>CGPA: {profileData.education?.cgpa}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div>
-                                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                                    <Award className="mr-2.5 text-blue-600" size={22} /> Certifications
-                                </h4>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    {profileData.certifications.map((cert, index) => (
-                                        <div key={index} className="bg-gray-50 dark:bg-gray-800/80 p-4 rounded-xl border border-gray-100 dark:border-gray-800 flex justify-between items-center">
-                                            <div>
-                                                <h5 className="font-bold text-gray-900 dark:text-white text-sm">{cert.title}</h5>
-                                                <p className="text-xs text-gray-500 mt-0.5">{cert.issuer}</p>
+                            {certifications.length > 0 && (
+                                <div>
+                                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center">
+                                        <Award className="mr-2.5 text-blue-600" size={22} /> Certifications
+                                    </h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        {certifications.map((cert, index) => (
+                                            <div key={index} className="bg-gray-50 dark:bg-gray-800/80 p-4 rounded-xl border border-gray-100 dark:border-gray-800 flex justify-between items-center">
+                                                <div>
+                                                    <h5 className="font-bold text-gray-900 dark:text-white text-sm">{cert.title}</h5>
+                                                    <p className="text-xs text-gray-500 mt-0.5">{cert.issuer}</p>
+                                                </div>
+                                                <span className="text-xs font-semibold text-blue-600 bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded-md">{cert.year}</span>
                                             </div>
-                                            <span className="text-xs font-semibold text-blue-600 bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded-md">{cert.year}</span>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </motion.div>
 
@@ -110,7 +114,7 @@ const AboutSection = () => {
                             </div>
 
                             <div className="space-y-4">
-                                {profileData.achievements.map((achievement, index) => {
+                                {(profileData.achievements || []).map((achievement, index) => {
                                     const parts = achievement.split(':');
                                     const title = parts[0];
                                     const desc = parts.slice(1).join(':');

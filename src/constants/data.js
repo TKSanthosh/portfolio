@@ -34,7 +34,19 @@ export const profileData = {
     college: "Velammal College of Engineering & Technology, Madurai",
     cgpa: "9.15 / 10",
     year: "2023"
-  }
+  },
+  certifications: [
+    {
+      title: "JavaScript & ReactJS Bootcamp",
+      issuer: "Google for Developers",
+      year: "2021"
+    },
+    {
+      title: "HTML5 Programming",
+      issuer: "Udemy",
+      year: "2021"
+    }
+  ]
 };
 
 export const skillsData = {
