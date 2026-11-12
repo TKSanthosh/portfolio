@@ -167,7 +167,7 @@ const Hero = () => {
                                     </div>
 
                                     <div className="p-3.5 bg-gray-50 dark:bg-gray-800/40 rounded-2xl border border-gray-100 dark:border-gray-800 text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
-                                        Focusing on Node.js, Express.js, React.js, MySQL, MongoDB, AWS, and REST API design.
+                                        Focusing on Node.js, Express.js, React.js, TypeScript, MySQL, MongoDB, AWS, and CI/CD pipelines.
                                     </div>
                                 </div>
                             </motion.div>

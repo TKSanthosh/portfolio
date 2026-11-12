@@ -180,8 +180,9 @@ const ResumeModal = ({ isOpen, onClose }) => {
                                         backend: 'Backend Technologies',
                                         frontend: 'Frontend Technologies',
                                         databases: 'Databases',
-                                        tools: 'Tools & Platforms',
-                                        systemDesign: 'Architecture & Security'
+                                        systemDesign: 'System Design',
+                                        tools: 'Tools & Cloud',
+                                        aiTools: 'AI & Developer Tools'
                                     };
                                     return (
                                         <div key={key} className="space-y-3">

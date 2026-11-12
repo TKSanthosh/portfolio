@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, Phone, MapPin, Globe } from 'lucide-react';
 export const profileData = {
   name: "SANTHOSH T K",
   role: "Software Development Engineer 2 (SDE2)",
-  experience: "3+ Years",
+  experience: "4+ Years",
   currentCompany: "IQVIA",
   location: "Bangalore",
   social: {
@@ -13,16 +13,16 @@ export const profileData = {
     mobile: "+91 8825802707",
     portfolio: "https://santhoshtk-portfolio.netlify.app/"
   },
-  shortIntro: "Software Development Engineer 2 (SDE2) with 3+ years of experience in designing, developing, and maintaining scalable web applications using Node.js, Express.js, React.js, MySQL, MongoDB, and AWS.",
-  longIntro: "Software Development Engineer 2 (SDE2) with 3+ years of experience in designing, developing, and maintaining scalable web applications using Node.js, Express.js, React.js, MySQL, MongoDB, and AWS. Experienced in REST API development, RBAC implementation, authentication, debugging, performance optimization, and enterprise application development.\n\nAt IQVIA and Sify Technologies, I have engineered enterprise clinical event management systems, led backend migration projects from PHP to Node.js, optimized high-concurrency database queries, and delivered resilient microservices ahead of deadlines.",
+  shortIntro: "Software Development Engineer 2 (SDE2) with 4+ years of experience engineering high-performance web applications across Node.js, Express.js, React.js, TypeScript, and AWS.",
+  longIntro: "Software Development Engineer 2 (SDE2) with 4+ years of experience engineering high-performance web applications across Node.js, Express.js, React.js, TypeScript, and AWS. Proven track record in designing resilient RESTful APIs, secure authentication architectures, optimizing MySQL and MongoDB query performance, and resolving complex production challenges. Deep expertise in asynchronous programming, MVC design, scalable caching, and modern CI/CD deployment pipelines.\n\nAt IQVIA and Sify Technologies, I have engineered clinical engagement management platforms, migrated legacy PHP backends to Node.js and MongoDB, optimized high-concurrency database queries, and delivered resilient production systems.",
   achievements: [
-    "Performance Impact: Reduced API response time by 20% and eliminated 30% of production bugs through systematic code migration and optimization.",
-    "Project Delivery: Shipped 8+ major features ahead of deadlines across two production systems.",
-    "Code Quality: Maintained 95%+ code review approval rate and established coding standards adopted by 5-member team.",
-    "Technical Leadership: Led PHP-to-Node.js migration project, mentored 2 junior developers on backend best practices."
+    "Performance Impact: Enhanced API response latency by 20% through server-side caching and SQL optimization, and decreased recurring production issues by 30%.",
+    "Project Delivery: Delivered 8+ major features across two mission-critical production systems.",
+    "Architecture Modernization: Contributed to core PHP-to-Node.js migration and modular backend refactoring initiatives.",
+    "Technical Leadership: Mentored junior engineers on backend development patterns, clean architecture, and coding standards."
   ],
   stats: [
-    { label: "Years Experience", value: "3+" },
+    { label: "Years Experience", value: "4+" },
     { label: "API Latency Cut", value: "20%" },
     { label: "Production Bugs Cut", value: "30%" },
     { label: "Major Features Shipped", value: "8+" },
@@ -30,7 +30,7 @@ export const profileData = {
     { label: "Academic CGPA", value: "9.15/10" }
   ],
   education: {
-    degree: "Bachelor of Engineering (B.E) – Electronics & Communication Engineering",
+    degree: "Bachelor of Engineering (B.E.), Electronics & Communication Engineering",
     college: "Velammal College of Engineering & Technology, Madurai",
     cgpa: "9.15 / 10",
     year: "2023"
@@ -51,24 +51,27 @@ export const profileData = {
 
 export const skillsData = {
   backend: [
-    "Node.js", "Express.js", "RESTful APIs", "JWT Authentication", 
-    "Middleware", "MVC Architecture", "Async/Await", "WebSockets",
-    "Structured Logging", "Centralized Exception Handling"
+    "Node.js", "TypeScript", "Express.js", "RESTful APIs",
+    "API Development & Integration", "JWT Authentication",
+    "RBAC & Authorization", "Middleware", "MVC Architecture",
+    "Asynchronous Programming"
   ],
   frontend: [
-    "React.js", "JavaScript (ES6+)", "React Hooks", 
+    "React.js", "TypeScript", "JavaScript (ES6+)", "React Hooks",
     "HTML5", "CSS3", "Reusable Components"
   ],
   databases: [
-    "MySQL", "MongoDB", "Joins", "Indexing", "Query Optimization"
-  ],
-  tools: [
-    "Git", "GitHub", "Postman", "npm", "VS Code", "JSON", "AWS"
+    "MySQL", "MongoDB", "SQL Joins", "Indexing", "Query Optimization"
   ],
   systemDesign: [
-    "API Validation & Security", "RBAC Implementation", 
-    "Centralized Error Handling", "Modular Service Architecture", 
-    "Production Debugging", "Performance Optimization"
+    "System Design Fundamentals", "Scalability", "Load Balancing",
+    "Caching", "Database Scaling", "Microservices Concepts"
+  ],
+  tools: [
+    "Git", "GitHub", "Postman", "npm", "VS Code", "JSON", "AWS", "CI/CD"
+  ],
+  aiTools: [
+    "Cursor", "Claude Code", "GitHub Copilot", "Generative AI / LLM APIs"
   ]
 };
 
@@ -77,16 +80,18 @@ export const projectsData = [
     id: "expert-events",
     company: "IQVIA",
     location: "Bangalore",
-    period: "June 2026 - Present",
-    title: "Expert Events – Clinical Event & Engagement Management Platform",
-    description: "An enterprise clinical event and engagement management platform built using Node.js, React.js, and MySQL to manage complex clinical trials and stakeholder engagements.",
+    period: "June 2026 – Present",
+    title: "Expert Events – Clinical Engagement Management Platform",
+    description: "An enterprise clinical engagement management platform featuring configurable React.js workflows, Node.js/Express.js backend services, MySQL approval pipelines, and automated GitHub Actions CI/CD.",
     highlights: [
-      "Working on an enterprise event management platform built using Node.js, React.js, and MySQL.",
-      "Involved in application enhancements and feature modifications based on client and business requirements.",
-      "Collaborating with team members to resolve issues and support ongoing application development."
+      "Developed a dynamic engagement-creation stepper using React.js, with configurable multi-step validation logic based on event type.",
+      "Engineered Node.js and Express.js backend services and a multi-level approval workflow in MySQL with administrator override capabilities.",
+      "Spearheaded end-to-end session lifecycle handling for live engagement events, from attendee onboarding through completion.",
+      "Collaborated with business analysts, technical leads, and client stakeholders to translate product roadmaps into reliable technical solutions.",
+      "Maintained automated CI/CD deployment workflows using GitHub Actions across staging and production environments."
     ],
-    tech: ["Node.js", "React.js", "MySQL", "Express.js", "RESTful APIs", "AWS"],
-    metrics: ["Enterprise Scale", "Clinical Event Mgmt", "Active Development"],
+    tech: ["Node.js", "TypeScript", "React.js", "Express.js", "MySQL", "RESTful APIs", "GitHub Actions", "AWS"],
+    metrics: ["Multi-Level Approval", "Live Event Lifecycle", "CI/CD Pipelines"],
     links: {
       github: null,
       demo: null
@@ -97,14 +102,14 @@ export const projectsData = [
     company: "Sify Technologies",
     location: "Chennai",
     period: "July 2023 – June 2026",
-    title: "Exam Engine – High-Concurrency Exam Delivery System",
-    description: "A mission-critical, high-concurrency exam delivery system engineered to process secure examination workflows and robust role-based access control.",
+    title: "Exam Engine – Exam Delivery Platform",
+    description: "A mission-critical, high-concurrency exam delivery platform migrated from legacy PHP to Node.js and MongoDB with fine-grained RBAC security and optimized query indexing.",
     highlights: [
-      "Migrated backend logic from PHP to Node.js and MongoDB, reducing recurring production issues by nearly 30%.",
-      "Implemented JWT-based authentication and role-based access control (RBAC) for secure exam workflows.",
-      "Optimized MySQL and MongoDB queries, improving data retrieval speed and reducing system load.",
-      "Resolved asynchronous issues, race conditions, and UI rendering delays.",
-      "Implemented structured logging and centralized exception handling, significantly improving debugging and issue resolution."
+      "Migrated legacy backend services from PHP to Node.js and MongoDB, decreasing recurring production issues by 30%.",
+      "Architected JWT authentication with fine-grained authorization (RBAC) to ensure tamper-proof exam integrity.",
+      "Optimized MySQL and MongoDB indexing strategies to accelerate query retrieval and decrease database load.",
+      "Resolved asynchronous race conditions and UI rendering bottlenecks across high-concurrency exam sessions.",
+      "Deployed structured logging and centralized exception handling to accelerate triage and incident resolution."
     ],
     tech: ["Node.js", "Express.js", "MongoDB", "MySQL", "JWT", "RBAC", "Async/Await"],
     metrics: ["30% Bugs Cut", "PHP -> Node Migration", "JWT & RBAC"],
@@ -118,17 +123,17 @@ export const projectsData = [
     company: "Sify Technologies",
     location: "Chennai",
     period: "July 2023 – June 2026",
-    title: "QPTool – Exam Configuration & Question Bank Platform",
-    description: "A scalable exam configuration platform managing item banking, rule evaluation, and frontend UI components with optimized API performance.",
+    title: "QPTool – Exam Configuration Platform",
+    description: "A scalable exam configuration platform powered by modular Node.js microservices, high-throughput RESTful APIs, and reusable React.js component libraries.",
     highlights: [
-      "Developed and maintained scalable backend services using Node.js, Express.js, MySQL, and MongoDB.",
-      "Built reusable React.js components and handled frontend API integration and UI logic.",
-      "Designed and implemented RESTful APIs, integrating them with React.js frontend, improving API response time by approximately 20%.",
-      "Refactored legacy backend code into modular, maintainable services, improving readability and long-term scalability.",
-      "Enhanced API validation, security, and centralized error handling to improve system stability."
+      "Engineered robust backend microservices utilizing Node.js, Express.js, MySQL, and MongoDB.",
+      "Designed high-throughput RESTful APIs and orchestrated seamless integration with React.js single-page applications.",
+      "Crafted reusable React.js component libraries with optimized rendering performance and clean state management.",
+      "Enhanced API response latency by 20% through targeted server-side caching and SQL query optimization.",
+      "Refactored legacy services into modular architectures, reinforcing input validation, data sanitization, and security policies."
     ],
     tech: ["Node.js", "Express.js", "React.js", "MySQL", "MongoDB", "REST APIs"],
-    metrics: ["20% Latency Cut", "Modular Services", "API Security"],
+    metrics: ["20% Latency Cut", "Modular Microservices", "Server-Side Caching"],
     links: {
       github: null,
       demo: null
@@ -142,15 +147,17 @@ export const experienceData = [
     company: "IQVIA",
     role: "Software Development Engineer 2 (SDE2)",
     location: "Bangalore",
-    period: "June 2026 - Present",
-    project: "Expert Events – Clinical Event & Engagement Management Platform",
-    description: "Working on an enterprise clinical event and engagement management platform using Node.js, React.js, and MySQL.",
+    period: "June 2026 – Present",
+    project: "Expert Events – Clinical Engagement Management Platform",
+    description: "Engineering dynamic React.js engagement workflows, Node.js/Express.js backend services, MySQL approval pipelines, and automated GitHub Actions CI/CD.",
     responsibilities: [
-      "Working on an enterprise event management platform built using Node.js, React.js, and MySQL.",
-      "Involved in application enhancements and feature modifications based on client and business requirements.",
-      "Collaborating with team members to resolve issues and support ongoing application development."
+      "Developed a dynamic engagement-creation stepper using React.js, with configurable multi-step validation logic based on event type.",
+      "Engineered Node.js and Express.js backend services and a multi-level approval workflow in MySQL with administrator override capabilities.",
+      "Spearheaded end-to-end session lifecycle handling for live engagement events, from attendee onboarding through completion.",
+      "Collaborated with business analysts, technical leads, and client stakeholders to translate product roadmaps into reliable technical solutions.",
+      "Maintained automated CI/CD deployment workflows using GitHub Actions across staging and production environments."
     ],
-    technologies: ["Node.js", "React.js", "MySQL", "Express.js", "RESTful APIs", "AWS"]
+    technologies: ["Node.js", "TypeScript", "Express.js", "React.js", "MySQL", "RESTful APIs", "GitHub Actions", "AWS"]
   },
   {
     id: 2,
@@ -159,31 +166,31 @@ export const experienceData = [
     location: "Chennai",
     period: "July 2023 – June 2026",
     project: "Exam Engine & QPTool Platforms",
-    description: "Engineered scalable backend microservices, led PHP-to-Node.js code migration, and developed full-stack features for examination systems.",
+    description: "Migrated legacy PHP services to Node.js and MongoDB, architected JWT/RBAC security, and engineered high-throughput RESTful APIs and reusable React.js libraries.",
     responsibilities: [
-      "Migrated backend logic from PHP to Node.js and MongoDB, reducing recurring production issues by nearly 30%.",
-      "Implemented JWT-based authentication and role-based access control (RBAC) for secure exam workflows.",
-      "Optimized MySQL and MongoDB queries, improving data retrieval speed and reducing system load.",
-      "Resolved asynchronous issues, race conditions, and UI rendering delays.",
-      "Designed and implemented RESTful APIs, integrating them with React.js frontend, improving API response time by approximately 20%.",
-      "Refactored legacy backend code into modular, maintainable services, improving readability and long-term scalability.",
-      "Implemented structured logging and centralized exception handling, significantly improving debugging and issue resolution."
+      "Migrated legacy backend services from PHP to Node.js and MongoDB, decreasing recurring production issues by 30%.",
+      "Architected JWT authentication with fine-grained authorization (RBAC) to ensure tamper-proof exam integrity.",
+      "Optimized MySQL and MongoDB indexing strategies to accelerate query retrieval and decrease database load.",
+      "Resolved asynchronous race conditions and UI rendering bottlenecks across high-concurrency exam sessions.",
+      "Engineered robust backend microservices utilizing Node.js, Express.js, MySQL, and MongoDB.",
+      "Designed high-throughput RESTful APIs, improving API response latency by 20% through server-side caching and SQL query optimization.",
+      "Refactored legacy services into modular architectures, reinforcing input validation, data sanitization, and centralized exception handling."
     ],
     technologies: ["Node.js", "Express.js", "React.js", "MySQL", "MongoDB", "JWT", "RBAC", "REST APIs"]
   },
   {
     id: 3,
-    company: "Sify Technologies",
-    role: "Full Stack Intern (CHIP 2023 Program)",
+    company: "Sify Technologies – CHIP 2023 Program",
+    role: "Full Stack Intern",
     location: "Chennai",
     period: "February 2023 – June 2023",
-    project: "Internal Tools & Modules",
-    description: "Participated in full-stack web development, production debugging workflows, and internal module building.",
+    project: "Internal Engineering Utilities & Web Apps",
+    description: "Built responsive frontend views and backend REST services while collaborating in Agile sprints and production code reviews.",
     responsibilities: [
-      "Worked on full stack development using Node.js, Express.js, React.js, MySQL, and MongoDB.",
-      "Gained hands-on experience with production workflows, debugging, and version control using Git.",
-      "Built internal tools and modules used by engineering teams in real projects."
+      "Built responsive frontend views and backend REST services utilizing React.js, Node.js, Express.js, and MySQL.",
+      "Participated in Agile sprints, production code reviews, and Git-driven collaboration workflows.",
+      "Contributed to internal engineering utilities adopted by core development teams across production initiatives."
     ],
-    technologies: ["Node.js", "Express.js", "React.js", "MySQL", "MongoDB", "Git", "Postman"]
+    technologies: ["React.js", "Node.js", "Express.js", "MySQL", "Git"]
   }
 ];

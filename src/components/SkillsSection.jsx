@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Server, Layout, Database, Wrench, Cpu, CheckCircle2, Search } from 'lucide-react';
+import { Server, Layout, Database, Wrench, Cpu, Sparkles, Search } from 'lucide-react';
 import { skillsData } from '../constants/data';
 
 const SkillsSection = () => {
@@ -12,8 +12,9 @@ const SkillsSection = () => {
         { id: 'backend', title: 'Backend', skills: skillsData.backend, icon: Server },
         { id: 'frontend', title: 'Frontend', skills: skillsData.frontend, icon: Layout },
         { id: 'databases', title: 'Databases', skills: skillsData.databases, icon: Database },
-        { id: 'tools', title: 'Tools & Platforms', skills: skillsData.tools, icon: Wrench },
-        { id: 'systemDesign', title: 'System Architecture', skills: skillsData.systemDesign, icon: Cpu },
+        { id: 'systemDesign', title: 'System Design', skills: skillsData.systemDesign, icon: Cpu },
+        { id: 'tools', title: 'Tools & Cloud', skills: skillsData.tools, icon: Wrench },
+        { id: 'aiTools', title: 'AI & Developer Tools', skills: skillsData.aiTools, icon: Sparkles },
     ];
 
     const filterCategories = selectedCategory === 'all' 
