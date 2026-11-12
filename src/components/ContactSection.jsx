@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, CheckCircle, Copy, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle, Copy, Check, AlertCircle, RotateCcw, ExternalLink, Loader2 } from 'lucide-react';
 import { profileData } from '../constants/data';
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        message: ''
+        message: '',
+        'bot-field': ''
     });
-    const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submittedData, setSubmittedData] = useState(null);
+    const [submitError, setSubmitError] = useState('');
     const [copiedItem, setCopiedItem] = useState(null);
 
     const handleChange = (e) => {
+        if (submitError) setSubmitError('');
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -22,13 +26,68 @@ const ContactSection = () => {
         setTimeout(() => setCopiedItem(null), 2500);
     };
 
-    const handleSubmit = (e) => {
+    const buildMailtoHref = () => {
+        const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name || 'Visitor'}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        );
+        return `mailto:${profileData.social.email}?subject=${subject}&body=${body}`;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({ name: '', email: '', message: '' });
-        }, 4000);
+        setIsSubmitting(true);
+        setSubmitError('');
+
+        const trimmedData = {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            message: formData.message.trim(),
+        };
+
+        if (!trimmedData.name || !trimmedData.email || !trimmedData.message) {
+            setSubmitError('Please fill in your name, email address, and message before sending.');
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            const payload = new URLSearchParams({
+                'form-name': 'contact',
+                subject: `New Portfolio Message from ${trimmedData.name}`,
+                'bot-field': formData['bot-field'],
+                name: trimmedData.name,
+                email: trimmedData.email,
+                message: trimmedData.message,
+            });
+
+            const response = await fetch('/__forms.html', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: payload.toString(),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Submission failed with status ${response.status}`);
+            }
+
+            setSubmittedData({
+                ...trimmedData,
+                sentAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            setFormData({ name: '', email: '', message: '', 'bot-field': '' });
+        } catch (err) {
+            setSubmitError(
+                'Could not deliver the form right now. Please try again or send directly using your email app.'
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleReset = () => {
+        setSubmittedData(null);
+        setSubmitError('');
     };
 
     return (
@@ -207,16 +266,83 @@ const ContactSection = () => {
                     >
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Me a Message</h3>
 
-                        {submitted ? (
-                            <div className="p-6 bg-blue-50 dark:bg-blue-950/60 rounded-2xl border border-blue-200 dark:border-blue-800 text-center space-y-3">
-                                <CheckCircle className="mx-auto text-blue-600 dark:text-blue-400" size={40} />
-                                <h4 className="text-lg font-bold text-gray-900 dark:text-white">Message Sent Successfully!</h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
-                                    Thank you for reaching out. I will get back to you as soon as possible.
-                                </p>
+                        {submittedData ? (
+                            <div className="p-6 sm:p-7 bg-blue-50/80 dark:bg-blue-950/50 rounded-2xl border border-blue-200 dark:border-blue-800 space-y-5">
+                                <div className="flex items-start space-x-3.5">
+                                    <div className="p-2.5 bg-blue-600 text-white rounded-xl flex-shrink-0">
+                                        <CheckCircle size={22} />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">
+                                            Thanks, {submittedData.name}! Your message has been delivered.
+                                        </h4>
+                                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+                                            Received at {submittedData.sentAt}. Santhosh will reply to <span className="font-semibold text-gray-900 dark:text-white">{submittedData.email}</span> shortly.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="p-4 bg-white dark:bg-gray-900 rounded-xl border border-blue-100 dark:border-gray-800 space-y-1.5">
+                                    <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Message Summary</span>
+                                    <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line break-words">
+                                        {submittedData.message}
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={handleReset}
+                                    className="px-5 py-2.5 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-white text-white dark:text-gray-900 text-xs sm:text-sm font-semibold rounded-xl transition-colors inline-flex items-center space-x-2 cursor-pointer"
+                                >
+                                    <RotateCcw size={15} />
+                                    <span>Send Another Message</span>
+                                </button>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-5">
+                            <form
+                                name="contact"
+                                method="POST"
+                                data-netlify="true"
+                                netlify-honeypot="bot-field"
+                                onSubmit={handleSubmit}
+                                className="space-y-5"
+                            >
+                                <input type="hidden" name="form-name" value="contact" />
+                                <input
+                                    type="hidden"
+                                    name="subject"
+                                    value={`New Portfolio Message from ${formData.name || 'Visitor'}`}
+                                />
+                                <p className="hidden" aria-hidden="true">
+                                    <label>
+                                        Don’t fill this out if you’re human:
+                                        <input
+                                            type="text"
+                                            name="bot-field"
+                                            value={formData['bot-field']}
+                                            onChange={handleChange}
+                                            tabIndex={-1}
+                                            autoComplete="off"
+                                        />
+                                    </label>
+                                </p>
+
+                                {submitError && (
+                                    <div className="p-4 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl space-y-2.5">
+                                        <div className="flex items-start space-x-2.5 text-red-700 dark:text-red-300 text-xs sm:text-sm font-medium">
+                                            <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+                                            <span>{submitError}</span>
+                                        </div>
+                                        <a
+                                            href={buildMailtoHref()}
+                                            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                                        >
+                                            <ExternalLink size={14} />
+                                            <span>Open in your Email App instead</span>
+                                        </a>
+                                    </div>
+                                )}
+
                                 <div>
                                     <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-2">
                                         Your Name
@@ -226,9 +352,10 @@ const ContactSection = () => {
                                         name="name"
                                         id="name"
                                         required
+                                        disabled={isSubmitting}
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm"
+                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm disabled:opacity-60"
                                         placeholder="Your Name"
                                     />
                                 </div>
@@ -241,9 +368,10 @@ const ContactSection = () => {
                                         name="email"
                                         id="email"
                                         required
+                                        disabled={isSubmitting}
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm"
+                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm disabled:opacity-60"
                                         placeholder="your.email@example.com"
                                     />
                                 </div>
@@ -256,18 +384,29 @@ const ContactSection = () => {
                                         id="message"
                                         rows="4"
                                         required
+                                        disabled={isSubmitting}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm"
+                                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white text-sm disabled:opacity-60"
                                         placeholder="Hi Santhosh, I'd like to discuss a project..."
                                     ></textarea>
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full py-3.5 px-6 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/25 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
+                                    disabled={isSubmitting}
+                                    className="w-full py-3.5 px-6 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed shadow-md shadow-blue-500/25 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
                                 >
-                                    <span>Send Message</span>
-                                    <Send size={18} />
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 size={18} className="animate-spin" />
+                                            <span>Sending Message...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>Send Message</span>
+                                            <Send size={18} />
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         )}

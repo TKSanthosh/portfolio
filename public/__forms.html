@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact Form</title>
+  </head>
+  <body>
+    <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="subject" value="New Portfolio Message via %{siteName} (%{submissionId})" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
